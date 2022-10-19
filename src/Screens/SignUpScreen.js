@@ -23,7 +23,7 @@ function SignUpScreen(props) {
                     <FormInput icon="key-outline" placeholder="Password"/>
                     <FormButton text="SIGN UP"/>
                 </View>  
-                <TouchableOpacity><Text style={styles.footerText1}>Don't have an account?Sign Up Now</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>props.navigation.navigate("SignIn")}><Text style={styles.footerText1}>Already Have an account? Login</Text></TouchableOpacity>
                 <TouchableOpacity><Text style={styles.footerText2}>Forgot Password?</Text></TouchableOpacity>
                 
 

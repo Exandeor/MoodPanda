@@ -1,9 +1,9 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext();
 
 function AuthProvider(props) {
-    const [alreadyLogin,setAlreadylogin] = useState(false);
+    const [alreadyLogin,setAlreadylogin] = useState(true);
     const [loading,setLoading] = useState(false);
 
     return (
