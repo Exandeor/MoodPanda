@@ -9,6 +9,7 @@ export const COLORS = {
   black: "#18191a",
   red:"red",
   white: "#FFFFFF",
+  white30 : "rgba(255,255,255,0.3)",
   lightGray: "#F5F5F6",
   lightGray2: "rgba(217,217,217,0.42)",
   lightGray3: "#EFEFF1",
@@ -26,6 +27,7 @@ export const COLORS = {
 export const SIZES = {
   base: 8,
   font: 14,
+  halfRadius : 5,
   radius: 10,
   semiRoundRadius:20,
   roundRadius: 30,
