@@ -8,7 +8,7 @@ function FavouriteScreen(props) {
     return (
       <View style={styles.container}>
         <View style={{flex:1,backgroundColor : COLORS.lightGray}}>
-          <DefaultHeaderBarComponent headerText="Favourite Restaurants"/>
+          <DefaultHeaderBarComponent iconColor={COLORS.black} headerText="Favourite Restaurants"/>
           <VerticalListComponent style={styles.list}/>
         </View>
       </View>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         backgroundColor : COLORS.white
     },
     list : {
-      marginTop : SIZES.padding,
+      marginTop : SIZES.padding / 6,
       backgroundColor : COLORS.white
     }
 })

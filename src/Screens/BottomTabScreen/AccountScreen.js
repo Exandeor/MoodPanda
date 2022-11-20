@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View ,StyleSheet, Text, ScrollView, StatusBar } from 'react-native';
 import ProfileComponent from '../../Components/ProfileComponent';
@@ -8,14 +9,14 @@ import { COLORS, FONTS, SIZES } from '../../Themes/Theme';
 
 
 function AccountScreen(props) {
+  const navigation = useNavigation();
     return (
         <View style={styles.container}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.profileContainer}><ProfileComponent/></View>
-            <View style={styles.profileSettingContainer}>
-              <ProfileSettingComponent/>
+            <View style={styles.profileContainer}>
+              <ProfileComponent onPress={()=>navigation.navigate("EditProfileScreen")}/>
             </View>
-
+            <View><ProfileSettingComponent/></View>
           </ScrollView>
         </View>
     );

@@ -1,16 +1,16 @@
 import React from 'react';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StatusBar, StyleSheet, Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
 function FloatSearchBarComponent(props) {
     return (
-        <View style={styles.container}>
+        <Pressable onPress={props.onPress} style={styles.container}>
           <View style={styles.subContainer}>
             <Ionicons name="search" size={20} color={COLORS.black}/>
             <Text style={styles.text}>What are you craving?</Text>
           </View>     
-        </View>
+        </Pressable>
     );
 }
 

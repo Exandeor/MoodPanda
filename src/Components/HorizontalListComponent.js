@@ -18,7 +18,7 @@ function HorizontalListComponent(props) {
                 ListFooterComponent={() => <View style={{width : 10}}/>}
                 renderItem={({item,index}) => {
                     return(
-                        <TouchableOpacity onPress={()=>navigation.navigate("RestaurantScreen")} style={styles.renderContainer}>
+                        <TouchableOpacity onPress={()=>navigation.navigate("RestaurantScreen",{item})} style={styles.renderContainer}>
                             <Image resizeMode='center' source={item.image} style={styles.image}/>
                             <Text style={styles.name}>{item.name}</Text>
                             <View style={{flexDirection : "row"}}>

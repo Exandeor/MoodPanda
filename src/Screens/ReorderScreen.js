@@ -15,7 +15,7 @@ const Restaurant = () => {
       <View style={{flex : 1,marginLeft:SIZES.padding}}>
         <View style={styles.layout}>
           <Text style={styles.restaurantHeaderText}>KFC(Waizayandar)</Text>
-          <Text style={styles.restaurantBodyText}>Order Now</Text>
+          <Text style={styles.restaurantBodyText}>Delivered</Text>
         </View>
         <View style={{flexDirection:"row"}}>
           <Image style={styles.foodIcon1} source={require("../DummyData/DummyImage/burger.png")}/>
@@ -27,7 +27,7 @@ const Restaurant = () => {
   )
 }
 
-function OrderSummaryScreen(props) {
+function ReorderScreen(props) {
     const navigation = useNavigation();
     return (
       <View style={styles.container}>
@@ -44,7 +44,7 @@ function OrderSummaryScreen(props) {
             <View style={styles.bottomContainer}>
               <Image style={styles.bottomImage} source={require("../Images/panda.png")}/>
               <ButtonComponent rippleColor={COLORS.black} style={styles.button}>
-                <Text style={styles.buttonText}>Order</Text>
+                <Text style={styles.buttonText}>Reorder</Text>
               </ButtonComponent>
             </View>
         </View>
@@ -52,7 +52,7 @@ function OrderSummaryScreen(props) {
     );
 }
 
-export default OrderSummaryScreen;
+export default ReorderScreen;
 
 const styles = StyleSheet.create({
     container : {

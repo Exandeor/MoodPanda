@@ -1,29 +1,33 @@
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View ,StyleSheet, Text, FlatList, Image, ScrollView} from 'react-native';
+import { View ,StyleSheet, Text, FlatList, Image, ScrollView, Pressable} from 'react-native';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 import RestaurantDetailsComponent from './RestaurantDetailsComponent';
 
 function RestaurantItemsComponent(props) {
-  const [hideBackgroundImage,setHideBackgroundImage] = useState(false);
+  const route = useRoute();
+  const navigation = useNavigation();
+  const item = route.params.item;
+  const {image} = item;
     return (
-      <View style={[styles.container,{backgroundColor:hideBackgroundImage?COLORS.white:"transparent"}]}>
+      <View style={[styles.container,{backgroundColor:props.hideBackground?COLORS.white:COLORS.transparent}]}>
         <FlatList
           data={[1,1,1,1,1,1,1,1,1]}
           style={{backgroundColor : COLORS.transparent}}
-          ListHeaderComponent={RestaurantDetailsComponent}
+          ListHeaderComponent={()=> <RestaurantDetailsComponent item={item}/>}
           showsVerticalScrollIndicator={false}
           keyExtractor={(_,index)=>index}
-          onScroll={e => e.nativeEvent.contentOffset.y > 100? setHideBackgroundImage(true) : setHideBackgroundImage(false)}
+          onScroll={e => e.nativeEvent.contentOffset.y > 100? props.setHideBackground(true) : props.setHideBackground(false)}
           renderItem={({item}) => {
             return(
-              <View style={styles.renderItemContainer}>
+              <Pressable onPress={()=>navigation.navigate("OrderSummaryScreen")} style={styles.renderItemContainer}>
                 <View style={styles.detailsContainer}>
                   <Text style={styles.foodName}>Fried Chicken Full Pack</Text>
                   <Text style={styles.foodPrice}>9300.00</Text>
                   <Text style={styles.foodStatus}>available</Text>
                 </View>
-                <Image source={require("../Images/panda.png")} style={styles.image} resizeMode="stretch"/>
-              </View>
+                <Image source={image} style={styles.image} resizeMode="stretch"/>
+              </Pressable>
             )
           }}
         />

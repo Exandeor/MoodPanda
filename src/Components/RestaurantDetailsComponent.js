@@ -4,14 +4,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
 function RestaurantDetailsComponent(props) {
+  const item = props.item;
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <View style={{flexDirection:"row",alignItems:"center"}}>
-            <Text style={styles.headerText}>KFC</Text>
+            <Text style={styles.headerText}>{item.name}</Text>
             <View style={styles.ratingContainer}>
               <Ionicons name='star' color={COLORS.gold} size={20}/>
-              <Text style={styles.rating}>4.6</Text>
+              <Text style={styles.rating}>{item.rating}</Text>
             </View>
           </View>
           <View style={styles.threeFoodIcons}>
@@ -23,7 +24,7 @@ function RestaurantDetailsComponent(props) {
         <View style={styles.distanceContainer}>
           <Image source={require("../Images/panda.png")} resizeMode='center' style={styles.deliveryImage}/>
           <View style={styles.distanceTextContainer}>
-            <Text style={styles.distantHeaderText}><Text style={styles.km}>1.8 km</Text>(25 mins)</Text>
+            <Text style={styles.distantHeaderText}><Text style={styles.km}>{item.details}</Text></Text>
             <Text style={styles.deliverNow}>Deliver Now</Text>
           </View>
           <Ionicons name="chevron-forward-outline" size={15} color={COLORS.black40}/>

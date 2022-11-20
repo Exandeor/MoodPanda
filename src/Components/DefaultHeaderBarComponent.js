@@ -8,11 +8,14 @@ import ButtonComponent from './ButtonComponent';
 function DefaultHeaderBarComponent(props) {
     const navigation = useNavigation();
     return (
-      <View style={styles.container}>
-        <ButtonComponent onPress={()=>navigation.goBack()} rippleColor={COLORS.darkgray} style={styles.button}>
-          <Ionicons name='arrow-back' size={25} color={COLORS.black}/>
+      <View style={[styles.container,props.style]}>
+        <ButtonComponent onPress={()=>navigation.goBack()} rippleColor={COLORS.darkgray} style={[styles.button,props.buttonStyle]}>
+          <Ionicons name='arrow-back' style={[styles.icon,{color:props.iconColor}]}/>
         </ButtonComponent>
         <Text style={styles.headerText}>{props.headerText}</Text>
+        {props.secondIcon && <ButtonComponent onPress={props.onPressSecondButton} rippleColor={COLORS.darkgray} style={[styles.button,props.buttonStyle]}>
+          <Ionicons name="heart-outline" style={[styles.secondIcon,{color:props.iconColor}]}/>
+        </ButtonComponent>}
       </View>
     );
 }
@@ -27,13 +30,23 @@ const styles = StyleSheet.create({
         backgroundColor : COLORS.white
     },
     button : {
-        width : 50,
-        height : "100%",
+        width : 40,
+        height : 40,
+        margin : SIZES.padding * 1,
         borderRadius : SIZES.roundRadius
+    },
+    icon : {
+        fontSize : 25,
+        color : COLORS.black
+    },
+    secondIcon : {
+        fontSize : 20,
+        color : COLORS.black,
     },
     headerText : {
         ...FONTS.h3,
         color : COLORS.black,
-        alignSelf : "center"
+        alignSelf : "center",
+        flex : 1
     }
 })

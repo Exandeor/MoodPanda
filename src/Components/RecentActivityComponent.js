@@ -13,7 +13,7 @@ function RecentActivityComponent(props) {
                 keyExtractor={(_,index)=>index}
                 renderItem={({item}) => {
                     return(
-                        <Pressable onPress={()=>navigation.navigate("OrderSummaryScreen")} android_ripple={{color : COLORS.black10}} style={styles.container}>
+                        <Pressable onPress={()=>navigation.navigate("ReorderScreen")} android_ripple={{color : COLORS.black10}} style={styles.container}>
                           <Image
                               resizeMode='stretch'
                               style={styles.image}

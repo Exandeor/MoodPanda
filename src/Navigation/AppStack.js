@@ -7,7 +7,8 @@ import { COLORS, FONTS } from '../Themes/Theme';
 import FavouriteScreen from '../Screens/FavouriteScreen';
 import SearchScreen from '../Screens/SearchScreen';
 import OrderSummaryScreen from '../Screens/OrderSummaryScreen';
-
+import EditProfileScreen from '../Screens/EditProfileScreen';
+import ReorderScreen from '../Screens/ReorderScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,18 @@ function AppStack(props) {
             options={{
               headerShown : false,
               animation : "slide_from_bottom"
+            }}
+          />
+          <Stack.Screen name='ReorderScreen' component={ReorderScreen}
+            options={{
+              headerShown : false,
+              animation : "slide_from_bottom"
+            }}
+          />
+          <Stack.Screen name='EditProfileScreen' component={EditProfileScreen}
+            options={{
+              headerShown : false,
+              animation : "slide_from_right"
             }}
           />
         </Stack.Navigator>

@@ -6,7 +6,7 @@ import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 function ProfileItemComponent(props) {
     return (
         
-        <Pressable style={styles.container} android_ripple={{color : COLORS.darkgray}}>
+        <Pressable onPress={()=>alert("Unavailable")} style={styles.container} android_ripple={{color : COLORS.darkgray}}>
           <View style={styles.subContainer}>
             <Text style={styles.text}>{props.text}</Text>
             <Ionicons name="chevron-forward-outline" size={15} color={COLORS.black40}/>

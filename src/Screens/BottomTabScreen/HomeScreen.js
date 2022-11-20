@@ -18,7 +18,7 @@ const HomeScreen = () => {
     return(
         <View>
             <StatusBar translucent barStyle={"dark-content"} backgroundColor={hideSearchBar? COLORS.transparent : COLORS.white}/>
-            {!hideSearchBar && <FloatSearchBarComponent/>}
+            {!hideSearchBar && <FloatSearchBarComponent onPress={()=>navigation.navigate("SearchScreen")}/>}
             <FlatList
                 data={[1]}
                 keyExtractor={(_,index) => index}
@@ -30,10 +30,9 @@ const HomeScreen = () => {
                             <LinearGradient start={{x:0,y:1}} end={{x:1,y:1}} colors={[COLORS.primary,COLORS.secondary]} style={styles.headerContainer}>
                                 <View style={styles.location}>
                                   <Text style={styles.locationText1}>DELIVER TO</Text>
-                                  <Text style={styles.locationText2}>353 Zayar 8th</Text>
+                                  <Text style={styles.locationText2}>472 Anawmar 11th</Text>
                                 </View>
                                 <TouchableOpacity onPress={()=>navigation.navigate("FavouriteScreen")} style={styles.favourite}><Ionicons name='heart-outline' size={20} color={COLORS.white}/></TouchableOpacity>
-                                <TouchableOpacity style={styles.map}><Ionicons name='compass-outline' size={20} color={COLORS.white}/></TouchableOpacity>
                             </LinearGradient>
                             <View style={styles.body}>
                                 <SearchBarComponent onPress={()=>navigation.navigate("SearchScreen")} placeHolder="What are you craving?"/>
@@ -47,13 +46,14 @@ const HomeScreen = () => {
                                     </View>
                                     <View style={styles.seperator}/>
                                     <View style={{flex : 1,borderRadius : SIZES.radius/2 ,overflow : "hidden"}}>
-                                        <Pressable android_ripple={{color : COLORS.darkgray}} style={styles.rewards}>
-                                            <Text style={styles.rewardsText1}>Offers</Text>
-                                            <Text style={styles.rewardsText2}>20+</Text>    
-                                            <Ionicons name="ios-receipt" style={styles.rewardsIcon}/>
+                                        <Pressable onPress={()=>navigation.navigate("EditProfileScreen")} android_ripple={{color : COLORS.darkgray}} style={styles.profile}>
+                                            <Text style={styles.profileText1}>Profile</Text>
+                                            <Text style={styles.profileText2}>Edit</Text>    
+                                            <Ionicons name="person" style={styles.profileIcon}/>
                                         </Pressable>
                                     </View>
                                 </View>
+                                <Text style={styles.getAllFoodText}>Get All Types of Foods In One App!</Text>
                                 <View style={styles.categoryContainer}>
                                     {
                                     CategoryListData.map((eachItem,index) => {
@@ -113,7 +113,6 @@ const styles = StyleSheet.create({
         backgroundColor : COLORS.white30,
         borderRadius : SIZES.roundRadius,
         padding : SIZES.padding / 2,
-        marginEnd : SIZES.padding,
         justifyContent : "center",
         alignItems : "center"
     },
@@ -161,7 +160,7 @@ const styles = StyleSheet.create({
         width : 5,
         height : "100%"
     },
-    rewards : {
+    profile : {
         flex : 1,
         backgroundColor : COLORS.lightGray,
         borderRadius : SIZES.radius / 2,
@@ -169,20 +168,26 @@ const styles = StyleSheet.create({
         paddingHorizontal : SIZES.padding
 
     },
-    rewardsText1 : {
+    profileText1 : {
         ...FONTS.body4,
         color : COLORS.black
     },
-    rewardsText2 : {
+    profileText2 : {
         ...FONTS.h5,
         color : COLORS.black
     },
-    rewardsIcon : {
+    profileIcon : {
         position : "absolute",
         right : 10,
         bottom : 5,
         fontSize : 25,
         color : COLORS.primary
+    },
+    getAllFoodText : {
+        marginTop : SIZES.padding * 2,
+        alignSelf : "center",
+        ...FONTS.h3,
+        color : COLORS.secondary
     },
     categoryContainer : {
         flexDirection : "row",

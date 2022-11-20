@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { FlatList, View , StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -5,6 +6,7 @@ import { RestaurantListData } from '../DummyData/RestaurantListData';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
 function VerticalListComponent(props) {
+    const navigation = useNavigation();
     return (
         <View style={[styles.container,props.style]}>
             {props.category&& <Text style={styles.category}>{props.category}</Text>}
@@ -15,7 +17,7 @@ function VerticalListComponent(props) {
                 ListFooterComponent={() => <View style={{height : 10}}/>}
                 renderItem={({item,index}) => {
                     return(
-                        <TouchableOpacity style={styles.renderContainer}>
+                        <TouchableOpacity onPress={()=>navigation.navigate("RestaurantScreen",{item})} style={styles.renderContainer}>
                           <Image resizeMode='center' source={item.image} style={styles.image}/>
                           <View style={{paddingHorizontal:SIZES.padding}}>
                             <Text style={styles.name}>{item.name}</Text>

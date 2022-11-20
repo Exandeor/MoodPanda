@@ -1,11 +1,11 @@
 import React from 'react';
-import { View ,StyleSheet, Text} from 'react-native';
+import { View ,StyleSheet, Text, Pressable} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
 function ProfileComponent(props) {
     return (
-          <View style={styles.container}>
+          <Pressable onPress={props.onPress} style={styles.container}>
             <Ionicons name='person-circle-outline' style={styles.profileIcon}/>
             <View>
                 <Text style={styles.userName}>Aung Aung Oo</Text>
@@ -14,7 +14,7 @@ function ProfileComponent(props) {
                 <Ionicons name='chevron-forward-outline' color={COLORS.black40} size={14}/>
                 </View>
             </View>
-          </View>     
+          </Pressable>     
   
     );
 }
