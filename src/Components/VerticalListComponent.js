@@ -1,47 +1,48 @@
 import React from 'react';
-import { FlatList, View , StyleSheet, Image, Text} from 'react-native';
+import { FlatList, View , StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RestaurantListData } from '../DummyData/RestaurantListData';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
-function VerticalList(props) {
+function VerticalListComponent(props) {
     return (
-        <View style={styles.container}>
-            <Text style={styles.category}>{props.category}</Text>
+        <View style={[styles.container,props.style]}>
+            {props.category&& <Text style={styles.category}>{props.category}</Text>}
             <FlatList
                 data={RestaurantListData}
                 keyExtractor={(_,index)=> index}
-                renderItem={renderItem}
                 showsHorizontalScrollIndicator={false}
                 ListFooterComponent={() => <View style={{height : 10}}/>}
+                renderItem={({item,index}) => {
+                    return(
+                        <TouchableOpacity style={styles.renderContainer}>
+                          <Image resizeMode='center' source={item.image} style={styles.image}/>
+                          <View style={{paddingHorizontal:SIZES.padding}}>
+                            <Text style={styles.name}>{item.name}</Text>
+                            <View>
+                              <Text style={styles.details}>{item.details}</Text>
+                              <View style={{flexDirection:"row"}}>
+                                <Ionicons name='star' color={COLORS.gold} size={15}/>
+                                <Text style={styles.rating}>{item.rating}</Text>
+                              </View>
+                            </View>
+                            <View style={{flexDirection : "row",marginTop:SIZES.padding}}>
+                              <Text numberOfLines={1} style={styles.discount}>{item.discount}</Text>
+                              <Text numberOfLines={1} style={styles.delivery}>available</Text>
+                            </View>
+                          </View>  
+                        </TouchableOpacity>
+                    )
+                }}
             />
         </View>
     );
 }
 
-const renderItem = ({item,index}) => {
-    return(
-        <View style={styles.renderContainer}>
-            <Image resizeMode='center' source={item.image} style={styles.image}/>
-            <Text style={styles.name}>{item.name}</Text>
-            <View style={{flexDirection : "row"}}>
-              <Text style={styles.details}>{item.details}</Text>
-              <Ionicons name='star' color={COLORS.gold} size={15}/>
-              <Text style={styles.rating}>{item.rating}</Text>
-            </View>
-            <View style={{flexDirection : "row"}}>
-              <Text numberOfLines={1} style={styles.discount}>{item.discount}</Text>
-              <Text numberOfLines={1} style={styles.delivery}>available</Text>
-            </View>
-        </View>
-    )
-}
-
-export default VerticalList;
+export default VerticalListComponent;
 
 const styles = StyleSheet.create({
     container : {
-        paddingVertical : SIZES.padding * 2
     },
     category : {
         marginStart : SIZES.padding,
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     renderContainer : {
         paddingVertical : SIZES.padding,
         paddingStart : SIZES.padding,
+        flexDirection : "row"
     },
     image : {
         width : SIZES.width * 0.3,

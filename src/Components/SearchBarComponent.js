@@ -6,11 +6,11 @@ import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 function SearchBar(props) {
     return (
         <View style={styles.container}>
-            <Pressable android_ripple={{color : COLORS.darkgray}} style={styles.subContainer} onPress={props.onPressSearch}>
+            <Pressable android_ripple={{color : COLORS.darkgray}} style={styles.subContainer} onPress={props.onPress}>
                 <Ionicons name='search' size={25} color={COLORS.darkgray}/>
                 <Text style={styles.text}>{props.placeHolder}</Text>
             </Pressable>
-            <TouchableHighlight style={styles.icon} underlayColor={COLORS.lightGray} onPress={props.onPressScan}>
+            <TouchableHighlight style={styles.icon} underlayColor={COLORS.lightGray} onPress={props.onPressQR}>
                 <Ionicons name='scan-outline' size={30} color={COLORS.black}/>
             </TouchableHighlight>
         </View>

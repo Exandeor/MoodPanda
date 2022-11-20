@@ -1,81 +1,82 @@
 import React, { useState } from 'react';
-import { View ,StyleSheet, Text, Image, ScrollView, FlatList, StatusBar, TouchableOpacity, Pressable} from 'react-native';
+import { View ,StyleSheet, Text, Image, StatusBar, TouchableOpacity, Pressable} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import FloatSearchBar from '../../Components/FloatSearchBar';
-import HorizontalList from '../../Components/HorizontalList';
-import SearchBar from '../../Components/SearchBar';
-import VerticalList from '../../Components/VerticalList';
+import { FlatList } from 'react-native-gesture-handler';
+import FloatSearchBarComponent from '../../Components/FloatSearchBarComponent';
+import HorizontalListComponent from '../../Components/HorizontalListComponent';
+import SearchBarComponent from '../../Components/SearchBarComponent';
+import VerticalListComponent from '../../Components/VerticalListComponent';
 import { CategoryListData } from '../../DummyData/CategoryListData';
 import { COLORS, FONTS, SIZES } from '../../Themes/Theme';
+import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 
-const HomeScreen = (route) => {
-    const [hideSearchBar,setHideSearchBar] = useState(true)
+const HomeScreen = () => {
+    const [hideSearchBar,setHideSearchBar] = useState(true);
+    const navigation = useNavigation();
     return(
         <View>
-            <StatusBar barStyle={"dark-content"} backgroundColor={hideSearchBar? COLORS.primary : COLORS.white}/>
-            <FloatSearchBar style={{display : hideSearchBar? "none" : "flex"}}/>
+            <StatusBar translucent barStyle={"dark-content"} backgroundColor={hideSearchBar? COLORS.transparent : COLORS.white}/>
+            {!hideSearchBar && <FloatSearchBarComponent/>}
             <FlatList
                 data={[1]}
                 keyExtractor={(_,index) => index}
-                renderItem={renderItem}
-                showsVerticalScrollIndicator={false}
                 onScroll={(e) => e.nativeEvent.contentOffset.y > 80? setHideSearchBar(false):setHideSearchBar(true)}
+                showsVerticalScrollIndicator={false}
+                renderItem={({item}) => {
+                    return (
+                        <View>
+                            <LinearGradient start={{x:0,y:1}} end={{x:1,y:1}} colors={[COLORS.primary,COLORS.secondary]} style={styles.headerContainer}>
+                                <View style={styles.location}>
+                                  <Text style={styles.locationText1}>DELIVER TO</Text>
+                                  <Text style={styles.locationText2}>353 Zayar 8th</Text>
+                                </View>
+                                <TouchableOpacity onPress={()=>navigation.navigate("FavouriteScreen")} style={styles.favourite}><Ionicons name='heart-outline' size={20} color={COLORS.white}/></TouchableOpacity>
+                                <TouchableOpacity style={styles.map}><Ionicons name='compass-outline' size={20} color={COLORS.white}/></TouchableOpacity>
+                            </LinearGradient>
+                            <View style={styles.body}>
+                                <SearchBarComponent onPress={()=>navigation.navigate("SearchScreen")} placeHolder="What are you craving?"/>
+                                <View style={styles.twoNavigationButtons}>
+                                    <View style={{flex : 1,borderRadius : SIZES.radius/2 ,overflow : "hidden"}}>
+                                        <Pressable onPress={()=>navigation.navigate("PaymentScreen")} android_ripple={{color : COLORS.darkgray}} style={styles.payment}>
+                                            <Text style={styles.paymentText1}>Payment</Text>
+                                            <Text style={styles.paymentText2}>Add a card</Text>
+                                            <Ionicons name="card" style={styles.paymentIcon}/>
+                                        </Pressable>
+                                    </View>
+                                    <View style={styles.seperator}/>
+                                    <View style={{flex : 1,borderRadius : SIZES.radius/2 ,overflow : "hidden"}}>
+                                        <Pressable android_ripple={{color : COLORS.darkgray}} style={styles.rewards}>
+                                            <Text style={styles.rewardsText1}>Offers</Text>
+                                            <Text style={styles.rewardsText2}>20+</Text>    
+                                            <Ionicons name="ios-receipt" style={styles.rewardsIcon}/>
+                                        </Pressable>
+                                    </View>
+                                </View>
+                                <View style={styles.categoryContainer}>
+                                    {
+                                    CategoryListData.map((eachItem,index) => {
+                                        return(
+                                            <View style={styles.categoryItem} key={index}>
+                                                <Image source={eachItem.image} style={styles.image}/>
+                                                <Text numberOfLines={2} style={styles.text}>{eachItem.category}</Text>
+                                            </View>
+                                        )
+                                    })
+                                    }
+                                </View>
+                                <HorizontalListComponent category="Fast Foods"/>
+                                <VerticalListComponent category="More restaurants"/>
+                                
+                            </View>
+                        </View>
+                    );
+                }}
             />
         </View>
     )
 }
-
-function renderItem(props) {
-    return (
-        <View>
-            <View style={styles.headerContainer}>
-                <View style={styles.location}>
-                <Text style={styles.locationText1}>DELIVER TO</Text>
-                <Text style={styles.locationText2}>353 Zayar 8th</Text>
-                </View>
-                <TouchableOpacity style={styles.favourite}><Ionicons name='heart-outline' size={20} color={COLORS.white}/></TouchableOpacity>
-                <TouchableOpacity style={styles.map}><Ionicons name='compass-outline' size={20} color={COLORS.white}/></TouchableOpacity>
-            </View>
-            <View style={styles.body}>
-                <SearchBar placeHolder="What are you craving?"/>
-                <View style={styles.twoNavigationButtons}>
-                    <View style={{flex : 1,borderRadius : SIZES.radius/2 ,overflow : "hidden"}}>
-                        <Pressable android_ripple={{color : COLORS.darkgray}} style={styles.payment}>
-                            <Text style={styles.paymentText1}>Payment</Text>
-                            <Text style={styles.paymentText2}>Add a card</Text>
-                            <Ionicons name="card" style={styles.paymentIcon}/>
-                        </Pressable>
-                    </View>
-                    <View style={styles.seperator}/>
-                    <View style={{flex : 1,borderRadius : SIZES.radius/2 ,overflow : "hidden"}}>
-                        <Pressable android_ripple={{color : COLORS.darkgray}} style={styles.rewards}>
-                            <Text style={styles.rewardsText1}>Offers</Text>
-                            <Text style={styles.rewardsText2}>20+</Text>    
-                            <Ionicons name="ios-receipt" style={styles.rewardsIcon}/>
-                        </Pressable>
-                    </View>
-                </View>
-                <View style={styles.categoryContainer}>
-                    {
-                    CategoryListData.map((eachItem,index) => {
-                        return(
-                            <View style={styles.categoryItem} key={index}>
-                                <Image source={eachItem.image} style={styles.image}/>
-                                <Text numberOfLines={2} style={styles.text}>{eachItem.category}</Text>
-                            </View>
-                        )
-                    })
-                    }
-                </View>
-                <HorizontalList category="Fast Foods"/>
-                <VerticalList category="More restaurants"/>
-                
-            </View>
-        </View>
-    );
-}
-
 
 export default HomeScreen;
 
@@ -84,8 +85,8 @@ const styles = StyleSheet.create({
 
     },
     headerContainer : {
-        height : 100,
-        backgroundColor : COLORS.primary,
+        height : 100 + StatusBar.currentHeight,
+        paddingTop : 50,
         flexDirection : "row",
         alignItems : "center",
         paddingBottom : SIZES.padding * 2.5,

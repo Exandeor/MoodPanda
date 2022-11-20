@@ -1,44 +1,44 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { FlatList, View , StyleSheet, Image, Text} from 'react-native';
+import { FlatList, View , StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RestaurantListData } from '../DummyData/RestaurantListData';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
-function HorizontalList(props) {
+function HorizontalListComponent(props) {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <Text style={styles.category}>{props.category}</Text>
             <FlatList
                 data={RestaurantListData}
                 keyExtractor={(_,index)=> index}
-                renderItem={renderItem}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 ListFooterComponent={() => <View style={{width : 10}}/>}
+                renderItem={({item,index}) => {
+                    return(
+                        <TouchableOpacity onPress={()=>navigation.navigate("RestaurantScreen")} style={styles.renderContainer}>
+                            <Image resizeMode='center' source={item.image} style={styles.image}/>
+                            <Text style={styles.name}>{item.name}</Text>
+                            <View style={{flexDirection : "row"}}>
+                              <Text style={styles.details}>{item.details}</Text>
+                              <Ionicons name='star' color={COLORS.gold} size={15}/>
+                              <Text style={styles.rating}>{item.rating}</Text>
+                            </View>
+                            <View style={{flexDirection : "row"}}>
+                              <Text numberOfLines={1} style={styles.discount}>{item.discount}</Text>
+                              <Text numberOfLines={1} style={styles.delivery}>available</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )
+                }}
             />
         </View>
     );
 }
 
-const renderItem = ({item,index}) => {
-    return(
-        <View style={styles.renderContainer}>
-            <Image resizeMode='center' source={item.image} style={styles.image}/>
-            <Text style={styles.name}>{item.name}</Text>
-            <View style={{flexDirection : "row"}}>
-              <Text style={styles.details}>{item.details}</Text>
-              <Ionicons name='star' color={COLORS.gold} size={15}/>
-              <Text style={styles.rating}>{item.rating}</Text>
-            </View>
-            <View style={{flexDirection : "row"}}>
-              <Text numberOfLines={1} style={styles.discount}>{item.discount}</Text>
-              <Text numberOfLines={1} style={styles.delivery}>available</Text>
-            </View>
-        </View>
-    )
-}
-
-export default HorizontalList;
+export default HorizontalListComponent;
 
 const styles = StyleSheet.create({
     container : {

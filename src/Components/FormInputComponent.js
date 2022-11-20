@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
-function FormInput(props) {
+function FormInputComponent(props) {
     return (
         <View style={styles.container}>
           <View style={styles.icon}><Ionicons name={props.icon} size={25} color={COLORS.secondary}/></View>
@@ -12,7 +12,7 @@ function FormInput(props) {
     );
 }
 
-export default FormInput;
+export default FormInputComponent;
 
 const styles = StyleSheet.create({
     container : {
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         borderRadius : SIZES.roundRadius,
         ...FONTS.body4,
         borderColor : COLORS.transparent25,
-        borderWidth : 1
+        borderWidth : 1,
+        color : COLORS.white
     }
 })

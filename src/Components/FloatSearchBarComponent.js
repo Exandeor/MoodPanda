@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
-function FloatSearchBar(props) {
+function FloatSearchBarComponent(props) {
     return (
-        <View style={[styles.container,props.style]}>
+        <View style={styles.container}>
           <View style={styles.subContainer}>
             <Ionicons name="search" size={20} color={COLORS.black}/>
             <Text style={styles.text}>What are you craving?</Text>
@@ -14,14 +14,15 @@ function FloatSearchBar(props) {
     );
 }
 
-export default FloatSearchBar;
+export default FloatSearchBarComponent;
 
 const styles = StyleSheet.create({
     container : {
-        width : SIZES.width,
+        width : "100%",
         height : 60,
         paddingHorizontal : SIZES.padding,
         paddingTop : SIZES.padding,
+        marginTop : StatusBar.currentHeight,
         paddingBottom : SIZES.padding,
         position : "absolute",
         zIndex : 10,

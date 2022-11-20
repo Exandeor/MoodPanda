@@ -20,23 +20,23 @@ const styles = StyleSheet.create({
         paddingHorizontal : SIZES.padding
     },
     delivery : {
-        paddingVertical : SIZES.padding,
+        paddingVertical : SIZES.padding / 1.5,
         paddingHorizontal : SIZES.padding * 1.5,
         backgroundColor : COLORS.lightGray,
         borderRadius: SIZES.roundRadius
     },
     deliveryText : {
-        ...FONTS.body4,
-        color : COLORS.black
+        ...FONTS.h6,
+        color : COLORS.black40
     },
     pickUp : {
-        paddingVertical : SIZES.padding,
+        paddingVertical : SIZES.padding / 1.5,
         paddingHorizontal : SIZES.padding * 1.5,
         backgroundColor : COLORS.lightGray,
         borderRadius: SIZES.roundRadius
     },
     pickUpText : {
-        ...FONTS.body4,
-        color : COLORS.black
+        ...FONTS.h6,
+        color : COLORS.black40
     }
 })

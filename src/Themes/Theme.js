@@ -4,11 +4,19 @@ const {width, height} = Dimensions.get("window");
 
 export const COLORS = {
   primary: "#ff9966",
+  primaryHue : "rgba(255,153,102,0.2)",
   secondary: "#ff3377",
   secPrimary:"#ff6666",
   black: "#18191a",
+  black10:"rgba(0,0,0,0.1)",
+  black20:"rgba(0,0,0,0.2)",
+  black30:"rgba(0,0,0,0.3)",
+  black40:"rgba(0,0,0,0.4)",
+  black70:"rgba(0,0,0,0.7)",
   red:"red",
   white: "#FFFFFF",
+  dodgerBlue : "dodgerblue",
+  dodgerBlueHint: "rgba(30,144,255,0.1)",
   white30 : "rgba(255,255,255,0.3)",
   lightGray: "#F5F5F6",
   lightGray2: "rgba(217,217,217,0.42)",
@@ -21,7 +29,8 @@ export const COLORS = {
   darkgray: '#898C95',
   gold:"#F4B400",
   textPrimary : "#050505",
-  textSecondary : "#41434e"
+  textSecondary : "#41434e",
+  online : "#32cd32"
 };
 
 export const SIZES = {
@@ -59,7 +68,7 @@ export const FONTS = {
   h6: {fontFamily: "Poppins-SemiBold", fontSize: SIZES.h6, lineHeight: 22},
   body1: {fontFamily: "Poppins-Regular", fontSize: SIZES.body1, lineHeight: 36},
   body2: {fontFamily: "Poppins-Regular", fontSize: SIZES.body2},
-  body3: {fontFamily: "Poppins-Regular", fontSize: SIZES.body3},
+  body3: {fontFamily: "Poppins-Regular", fontSize: SIZES.body3,lineHeight : 22},
   body4: {fontFamily: "Poppins-Regular", fontSize: SIZES.body4, lineHeight: 22},
   body5: {fontFamily: "Poppins-Regular", fontSize: SIZES.body5},
 };

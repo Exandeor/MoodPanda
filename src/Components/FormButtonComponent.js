@@ -2,17 +2,17 @@ import React from 'react';
 import { Text,StyleSheet, Pressable, View} from 'react-native';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
-function FormButton(props) {
+function FormButtonComponent(props) {
     return (
         <View style={styles.container}>
-          <Pressable android_ripple={{color: COLORS.secondary}} style={styles.pressable}>
+          <Pressable onPress={props.onPress} android_ripple={{color: COLORS.secondary}} style={styles.pressable}>
             <Text style={styles.text}>{props.text}</Text>   
           </Pressable>
         </View>
     );
 }
 
-export default FormButton;
+export default FormButtonComponent;
 
 const styles = StyleSheet.create({
     container : {
