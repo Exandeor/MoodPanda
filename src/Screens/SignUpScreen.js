@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View ,StyleSheet, Text, TouchableOpacity, Pressable, Keyboard, StatusBar} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import FormButtonComponent from '../Components/FormButtonComponent';
 import FormInputComponent from '../Components/FormInputComponent';
 import LogoComponent from '../Components/LogoComponent';
 import TwoTitlesComponent from '../Components/TwoTitlesComponent';
+import { AuthContext } from '../Providers/AuthProvider';
 import { COLORS, FONTS, SIZES } from '../Themes/Theme';
 
 function SignUpScreen(props) {
+    const {setAlreadylogin} = useContext(AuthContext);
     return (
         <Pressable onPress={()=>Keyboard.dismiss()} style={{flex : 1}}>
             <StatusBar translucent backgroundColor={COLORS.transparent}/>
@@ -22,7 +24,7 @@ function SignUpScreen(props) {
                         <FormInputComponent icon="person-outline" placeholder="User Name"/>
                         <FormInputComponent icon="mail-outline" placeholder="Email Address"/>
                         <FormInputComponent icon="key-outline" placeholder="Password"/>
-                        <FormButtonComponent text="SIGN UP"/>
+                        <FormButtonComponent onPress={()=>setAlreadylogin(true)} text="SIGN UP"/>
                     </View>  
                     <TouchableOpacity onPress={()=>props.navigation.navigate("SignIn")}><Text style={styles.footerText1}>Already Have an account? Login</Text></TouchableOpacity>
                     <TouchableOpacity><Text style={styles.footerText2}>Forgot Password?</Text></TouchableOpacity>

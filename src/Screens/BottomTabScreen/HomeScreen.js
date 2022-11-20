@@ -35,7 +35,7 @@ const HomeScreen = () => {
                                 <TouchableOpacity onPress={()=>navigation.navigate("FavouriteScreen")} style={styles.favourite}><Ionicons name='heart-outline' size={20} color={COLORS.white}/></TouchableOpacity>
                             </LinearGradient>
                             <View style={styles.body}>
-                                <SearchBarComponent onPress={()=>navigation.navigate("SearchScreen")} placeHolder="What are you craving?"/>
+                                <SearchBarComponent onPress={()=>navigation.navigate("SearchScreen")} onPressQR={()=>navigation.navigate("QRCodeScreen")} placeHolder="What are you craving?"/>
                                 <View style={styles.twoNavigationButtons}>
                                     <View style={{flex : 1,borderRadius : SIZES.radius/2 ,overflow : "hidden"}}>
                                         <Pressable onPress={()=>navigation.navigate("PaymentScreen")} android_ripple={{color : COLORS.darkgray}} style={styles.payment}>

@@ -9,6 +9,7 @@ import SearchScreen from '../Screens/SearchScreen';
 import OrderSummaryScreen from '../Screens/OrderSummaryScreen';
 import EditProfileScreen from '../Screens/EditProfileScreen';
 import ReorderScreen from '../Screens/ReorderScreen';
+import QRCodeScreen from '../Screens/QRCodeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,11 @@ function AppStack(props) {
             options={{
               headerShown : false,
               animation : "slide_from_right"
+            }}
+          />
+          <Stack.Screen name='QRCodeScreen' component={QRCodeScreen}
+            options={{
+              headerShown : false
             }}
           />
         </Stack.Navigator>
