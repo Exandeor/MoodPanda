@@ -28,8 +28,6 @@ function SignUpScreen(props) {
                     </View>  
                     <TouchableOpacity onPress={()=>props.navigation.navigate("SignIn")}><Text style={styles.footerText1}>Already Have an account? Login</Text></TouchableOpacity>
                     <TouchableOpacity><Text style={styles.footerText2}>Forgot Password?</Text></TouchableOpacity>
-                    
-
                     </View>  
             </LinearGradient>
         </Pressable>

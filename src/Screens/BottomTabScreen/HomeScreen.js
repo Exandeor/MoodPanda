@@ -28,10 +28,10 @@ const HomeScreen = () => {
                     return (
                         <View>
                             <LinearGradient start={{x:0,y:1}} end={{x:1,y:1}} colors={[COLORS.primary,COLORS.secondary]} style={styles.headerContainer}>
-                                <View style={styles.location}>
+                                <Pressable onPress={()=>navigation.navigate("MapScreen")} style={styles.location}>
                                   <Text style={styles.locationText1}>DELIVER TO</Text>
                                   <Text style={styles.locationText2}>472 Anawmar 11th</Text>
-                                </View>
+                                </Pressable>
                                 <TouchableOpacity onPress={()=>navigation.navigate("FavouriteScreen")} style={styles.favourite}><Ionicons name='heart-outline' size={20} color={COLORS.white}/></TouchableOpacity>
                             </LinearGradient>
                             <View style={styles.body}>
