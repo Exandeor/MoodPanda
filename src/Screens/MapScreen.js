@@ -9,8 +9,8 @@ export default function MapScreen() {
         style={styles.map}
         //specify our coordinates.
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: 16.836809,
+          longitude: 96.178960,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
